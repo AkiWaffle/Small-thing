@@ -1,0 +1,644 @@
+
+/* ========================================
+   1. COLOR PALETTE
+   Pink, butter yellow, and warm peach
+======================================== */
+
+:root {
+    --pink: #f7a8c8;
+    --pink-light: #ffe0ed;
+    --pink-dark: #d96598;
+
+    --yellow: #ffe99a;
+    --yellow-light: #fff6d5;
+
+    --peach: #ffd1b8;
+    --text-dark: #75445b;
+    --text-soft: #96677c;
+
+    --card-bg: rgba(255, 255, 255, 0.82);
+    --card-border: #ffd2e3;
+}
+
+
+/* ========================================
+   2. MAIN PAGE
+======================================== */
+
+body {
+    background: linear-gradient(
+        135deg,
+        #fff0f6,
+        #fff7d9,
+        #ffe3ec,
+        #fff2d7
+    );
+
+    color: var(--text-dark);
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+    min-height: 100vh;
+    padding: 24px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   3. MAIN BIRTHDAY CARD
+======================================== */
+
+.birthday-card {
+    width: 100%;
+    max-width: 560px;
+    box-sizing: border-box;
+    padding: 40px 28px;
+
+    background: var(--card-bg);
+
+    border: 2px solid var(--card-border);
+    border-radius: 28px;
+
+    box-shadow:
+        0 15px 45px rgba(217, 101, 152, 0.14),
+        0 4px 15px rgba(255, 220, 140, 0.2);
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* ========================================
+   4. HEADINGS AND TEXT
+======================================== */
+
+h1 {
+    color: var(--pink-dark);
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+    margin-bottom: 12px;
+}
+
+h2 {
+    color: var(--pink-dark);
+}
+
+p {
+    color: var(--text-soft);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.eyebrow {
+    color: #c77c9e;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+}
+
+.subtitle {
+    margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+.heart {
+    color: var(--pink-dark);
+    font-size: 3.5rem;
+    margin-bottom: 8px;
+}
+
+
+/* ========================================
+   5. BUTTONS
+======================================== */
+
+button {
+    background: linear-gradient(
+        135deg,
+        var(--pink),
+        #ffc6d9
+    );
+
+    color: #713c56;
+
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 999px;
+
+    padding: 14px 26px;
+    max-width: 100%;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+    white-space: normal;
+
+    box-shadow: 0 5px 15px rgba(217, 101, 152, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(
+        135deg,
+        var(--yellow),
+        var(--peach)
+    );
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(217, 101, 152, 0.2);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--pink-dark);
+    outline-offset: 4px;
+}
+
+
+/* ========================================
+   6. FIRST LOVE LETTER
+======================================== */
+
+#letter[hidden],
+#specialMessage[hidden],
+#secondSurpriseButton[hidden] {
+    display: none;
+}
+
+#letter {
+    margin-top: 32px;
+    text-align: left;
+    line-height: 1.8;
+}
+
+#letter:not([hidden]) {
+    animation: letterReveal 0.8s ease-out;
+}
+
+#letter h2 {
+    text-align: center;
+}
+
+
+/* ========================================
+   7. SECOND SURPRISE LETTER
+======================================== */
+
+#second-surprise {
+    margin-top: 24px;
+}
+
+#specialMessage {
+    margin-top: 24px;
+    padding: 20px;
+
+    border: 2px solid #ffe0a0;
+    border-radius: 20px;
+
+    background: linear-gradient(
+        145deg,
+        #fff9e8,
+        #fff0f6
+    );
+
+    box-shadow: 0 8px 25px rgba(217, 101, 152, 0.1);
+}
+
+#specialMessage:not([hidden]) {
+    animation: letterReveal 0.8s ease-out;
+}
+
+#specialMessage h2 {
+    text-align: center;
+}
+
+#specialMessage p {
+    font-size: 0.95rem;
+}
+
+
+/* ========================================
+   8. LETTER REVEAL ANIMATION
+======================================== */
+
+@keyframes letterReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ========================================
+   9. FLOATING HEARTS
+   Preserves your existing JavaScript
+======================================== */
+
+#hearts-container {
+    position: fixed;
+    inset: 0;
+
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -40px;
+
+    color: var(--pink-dark);
+    font-size: 24px;
+
+    animation: floatUp linear forwards;
+    will-change: transform, opacity;
+
+    text-shadow: 0 2px 8px rgba(217, 101, 152, 0.15);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    85% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(30deg);
+        opacity: 0;
+    }
+}
+
+
+/* ========================================
+   10. MOBILE LAYOUT
+======================================== */
+
+@media (max-width: 400px) {
+    body {
+        padding: 16px;
+    }
+
+    .birthday-card {
+        padding: 32px 18px;
+    }
+
+    .eyebrow {
+        letter-spacing: 2px;
+    }
+
+    #specialMessage {
+        padding: 16px;
+    }
+}
+
+
+/* ========================================
+   11. ACCESSIBILITY
+   Respect reduced-motion preferences
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    #letter:not([hidden]),
+    #specialMessage:not([hidden]) {
+        animation: none;
+    }
+
+    button {
+        transition: none;
+    }
+}
+
+
+/* Animated pastel background */
+body {
+    background: linear-gradient(
+        135deg,
+        #ffb6d5,
+        #fff0a8,
+        #ffb3c6,
+        #ffe28a,
+        #e9baff
+    );
+
+    background-size: 600% 600%;
+    animation: gradientDrift 6s ease-in-out infinite;
+}
+
+/* Move the gradient back and forth */
+@keyframes gradientDrift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    body {
+        animation: none;
+        background-position: 50% 50%;
+    }
+}
+
+#balloons-container {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.floating-balloon {
+    position: absolute;
+    bottom: -160px;
+    width: 45px;
+    height: 60px;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: balloonFloat 9s linear forwards;
+}
+
+.balloon-string {
+    position: absolute;
+    top: 58px;
+    left: 50%;
+    height: 45px;
+    border-left: 1px solid #b98b9e;
+}
+
+@keyframes balloonFloat {
+    0% {
+        transform: translateY(0) translateX(0) rotate(-8deg);
+    }
+
+    50% {
+        transform: translateY(-60vh) translateX(35px) rotate(8deg);
+    }
+
+    100% {
+        transform: translateY(-120vh) translateX(-20px) rotate(-8deg);
+    }
+}
+
+.birthday-card{
+    position:relative;
+    z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .floating-balloon{
+        animation: none;
+        display: none;
+    }
+}
+
+
+/* ========================================
+   INTERACTIVE BIRTHDAY CAKE
+======================================== */
+
+#birthdayCakeSection {
+    margin-top: 36px;
+    padding: 24px 10px;
+    text-align: center;
+    border-top: 2px dashed #ffd2e3;
+}
+
+#birthdayCakeSection h2 {
+    font-size: 1.5rem;
+}
+
+.cake-scene {
+    position: relative;
+    width: 240px;
+    height: 210px;
+    margin: 35px auto 25px;
+}
+
+/* Cake plate */
+.cake-plate {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    width: 210px;
+    height: 15px;
+    border-radius: 50%;
+    background: #e9baff;
+    box-shadow: 0 5px 0 #d4a1ee;
+}
+
+/* Bottom and middle cake layers */
+.cake-layer {
+    position: absolute;
+    left: 30px;
+    width: 180px;
+    height: 48px;
+    border-radius: 10px 10px 14px 14px;
+    box-shadow: inset 0 -7px rgba(180, 80, 110, 0.12);
+}
+
+.cake-bottom {
+    bottom: 25px;
+    background: #ffb6d5;
+}
+
+.cake-middle {
+    bottom: 70px;
+    left: 40px;
+    width: 160px;
+    background: #ffd1b8;
+}
+
+/* Frosting on top */
+.cake-top {
+    position: absolute;
+    bottom: 110px;
+    left: 35px;
+    width: 170px;
+    height: 25px;
+    border-radius: 50%;
+    background: #fff0bd;
+    border: 3px solid #ffe0a0;
+    z-index: 1;
+}
+
+/* Candles */
+.candles {
+    position: absolute;
+    bottom: 132px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 12px;
+    z-index: 3;
+}
+
+.candle {
+    position: relative;
+    width: 12px;
+    height: 42px;
+    border-radius: 4px 4px 2px 2px;
+}
+
+.pink-candle {
+    background: repeating-linear-gradient(
+        135deg,
+        #f7a8c8,
+        #f7a8c8 5px,
+        #fff0f6 5px,
+        #fff0f6 9px
+    );
+}
+
+.yellow-candle {
+    background: repeating-linear-gradient(
+        135deg,
+        #ffe066,
+        #ffe066 5px,
+        #fff9df 5px,
+        #fff9df 9px
+    );
+}
+
+.purple-candle {
+    background: repeating-linear-gradient(
+        135deg,
+        #c9a0ff,
+        #c9a0ff 5px,
+        #f6eaff 5px,
+        #f6eaff 9px
+    );
+}
+
+/* Flickering flames */
+.flame {
+    position: absolute;
+    top: -20px;
+    left: 2px;
+    width: 9px;
+    height: 17px;
+    background: #ffae42;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: 0 0 12px #ffcb62;
+    transform-origin: center bottom;
+    animation: flameFlicker 0.6s ease-in-out infinite alternate;
+}
+
+.flame::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 2px;
+    width: 5px;
+    height: 9px;
+    border-radius: 50%;
+    background: #fff5bd;
+}
+
+/* Flame animation */
+@keyframes flameFlicker {
+    from {
+        transform: rotate(-5deg) scale(1);
+    }
+
+    to {
+        transform: rotate(5deg) scale(0.88);
+    }
+}
+
+/* Extinguished candles */
+.flame.extinguished {
+    display: none;
+}
+
+/* Birthday wish */
+#wishMessage {
+    color: #d96598;
+    font-weight: bold;
+    animation: letterReveal 0.8s ease-out;
+}
+
+#wishMessage[hidden] {
+    display: none;
+}
+
+/* Cake on small screens */
+@media (max-width: 400px) {
+    .cake-scene {
+        transform: scale(0.9);
+        transform-origin: top center;
+        margin-bottom: 5px;
+    }
+
+    #birthdayCakeSection {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .flame {
+        animation: none;
+    }
+
+    #wishMessage {
+        animation: none;
+    }
+}
+.button-gif {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-left: 6px;
+    border-radius: 6px;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.button-gif {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right: 8px;
+}
